@@ -4,6 +4,10 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { FaStar } from "react-icons/fa";
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import ImageUploader from 'react-images-upload';
+import ImageUploading, { ImageListType } from "react-images-uploading";
+import Image from './image';
+
 
 
 const colors = {
@@ -61,6 +65,17 @@ function App() {
   
   const stars = Array(5).fill(0);
   const classes = useStyles();
+  const [images, setImages] = useState([]);
+  const maxNumber = 69;
+
+  const onChange = (
+    imageList: ImageListType,
+    addUpdateIndex: number[] | undefined
+  ) => {
+    // data for submit
+    console.log(imageList, addUpdateIndex);
+    setImages(imageList as never[]);
+  };
   const [{alt, src}, setImg] = useState({
     src: "",
     alt: 'Upload an Image'
@@ -75,7 +90,9 @@ const handleImg = (e:any) => {
     }   
 }
 
+ const onDrop =(e:any)=>{
 
+ }
   const handleClick = (value:any) => {
     setCurrentValue(value)
   }
@@ -139,8 +156,9 @@ const handleImg = (e:any) => {
     
   </Form.Group>
 
-        <h1>Preview</h1>        
-  <img src={src} />
+        <p>Preview</p>        
+  <img src={src} style={{width:'100%'}} />
+  {/* <Image/> */}
 
   <Button variant="primary" type="submit">
     Submit
