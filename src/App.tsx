@@ -139,7 +139,7 @@ const handleImg = (e:any) => {
     
   </Form.Group>
 
-                
+        <h1>Preview</h1>        
   <img src={src} />
 
   <Button variant="primary" type="submit">
