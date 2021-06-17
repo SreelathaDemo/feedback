@@ -58,8 +58,22 @@ createStyles({
 function App() {
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
+  
   const stars = Array(5).fill(0);
   const classes = useStyles();
+  const [{alt, src}, setImg] = useState({
+    src: "",
+    alt: 'Upload an Image'
+});
+
+const handleImg = (e:any) => {
+    if(e.target.files[0]) {
+        setImg({
+            src: URL.createObjectURL(e.target.files[0]),
+            alt: e.target.files[0].name
+        });    
+    }   
+}
 
 
   const handleClick = (value:any) => {
@@ -73,6 +87,8 @@ function App() {
   const handleMouseLeave = () => {
     setHoverValue(undefined)
   }
+ 
+  
   return (
     <div className="App">
     <h1 className='title'>Customer  Feedback</h1><br />
@@ -116,12 +132,15 @@ function App() {
   </Form.Group><br />
   <Form.Group controlId="formBasicEmail">
     <Form.Label className='labelTitle'>Image</Form.Label>
-    <Form.Control type="file" accept="image/*" capture  />
+    <Form.Control type="file" accept="image/*" capture onChange={handleImg} />
+
     
 
     
   </Form.Group>
 
+                
+  <img src={src} />
 
   <Button variant="primary" type="submit">
     Submit
