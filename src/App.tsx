@@ -87,7 +87,8 @@ const handleImg = (e:any) => {
             src: URL.createObjectURL(e.target.files[0]),
             alt: e.target.files[0].name
         });    
-    }   
+    } 
+    console.log(src);  
 }
 
  const onDrop =(e:any)=>{
@@ -149,14 +150,16 @@ const handleImg = (e:any) => {
   </Form.Group><br />
   <Form.Group controlId="formBasicEmail">
     <Form.Label className='labelTitle'>Image</Form.Label>
-    <Form.Control type="file" accept="image/*" capture onChange={handleImg} />
+    <Form.Control type="file" multiple  accept="image/*" capture onChange={handleImg} />
 
     
 
     
   </Form.Group>
 
-        <p>Preview</p>        
+        <p>Preview</p>  
+        
+        
   <img src={src} style={{width:'100%'}} />
   {/* <Image/> */}
 
